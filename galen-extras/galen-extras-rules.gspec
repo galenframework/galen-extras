@@ -1,0 +1,144 @@
+
+@script galen-extras-rules.js
+
+
+# Check that all matching elements are squared
+# e.g.
+#
+#   | header-icon, menu-button should be squared
+#
+@rule %{objectPattern} should be squared
+    @forEach [${objectPattern}] as item
+        ${item}:
+            width 100% of ${objectName}/height
+
+
+
+# Check that all matching elements are almost squared
+# allowing 10% difference between width and height
+# e.g.
+#
+#   | header-icon, menu-button should almost be squared
+#
+@rule %{objectPattern} should almost be squared
+    @forEach [${objectPattern}] as item
+        ${item}:
+            width 90 to 110% of ${objectName}/height
+
+
+
+# Check that element is strictly squared
+# e.g.
+#
+#   header.icon:
+#       | squared
+#
+@rule squared
+    width 100% of ${objectName}/height
+
+
+
+# Check that element is almost squared 
+# allowing 10% difference between its width and height
+# e.g.
+#
+#   header.icon:
+#       | almost squared
+#
+@rule almost squared
+    width 90 to 110% of ${objectName}/height
+
+
+
+# Checking amount of objects
+# e.g. 
+#
+#   | amount of menu-item should be > 4
+#
+@rule amount of %{objectPattern} should be %{amount}
+    global:
+        count any "${objectPattern}" is ${amount}
+
+
+
+# Check elements horizontal alignment and equal distance between each other
+# e.g.
+#
+#   | home_box_* are aligned horizontally next to each other with equal distance
+#
+@rule %{objectPattern} are aligned horizontally next to each other with equal distance
+    @if ${count(objectPattern) > 1}
+        @set _distance_ ${var all = findAll(objectPattern); Math.abs(all[1].left() - all[0].right())}
+        @forEach [${objectPattern}] as item, next as nextItem
+            ${item}:
+                aligned horizontally all ${nextItem}
+                left-of ${nextItem} ${_distance_} px
+
+
+
+# Check elements vertical alignment and equal distance between each other
+# e.g.
+#
+#   | home_box_* are aligned vertically above each other with equal distance
+#
+@rule %{objectPattern} are aligned vertically above each other with equal distance
+    @if ${count(objectPattern) > 1}
+        @set _distance_ ${var all = findAll(objectPattern); Math.abs(all[1].top() - all[0].bottom())}
+        @forEach [${objectPattern}] as item, next as nextItem
+            ${item}:
+                aligned vertically all ${nextItem}
+                above ${nextItem} ${_distance_} px
+
+
+
+# Check elements horizontal alignment and specific margin between each other
+# e.g.
+#
+#   | home_box_* are aligned horizontally next to each other with 10 to 30px margin
+#
+@rule %{objectPattern} are aligned horizontally next to each other with ${margin} margin
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned horizontally all ${nextItem}
+            left-of ${nextItem} ${margin}
+
+
+
+# Check elements vertical alignment and specific margin between each other
+# e.g.
+#
+#   | home_box_* are aligned vertically above each other with 10 to 20 px margin
+#
+@rule %{objectPattern} are aligned vertically above each other with ${margin} margin
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned vertically all ${nextItem}
+            above ${nextItem} ${margin}
+
+
+
+# Check that element appears and hides on different tags
+# e.g.
+#
+#   | login-button, menu-item-* should be visible on desktop, tablet but absent on mobile
+#
+@rule %{objectPatterns} should be visible on %{tagsVisible} but absent on %{tagsAbsent}
+    ${objectPatterns}:
+        @on ${tagsVisible}
+            visible
+        @on ${tagsAbsent}
+            absent
+
+
+
+# Validate all matching objects using specified component spec
+# e.g.
+#
+#   | test box-* with components/box.gspec
+#
+@rule test %{objectPattern} with %{componentPath}
+    @forEach [${objectPattern] as item
+        ${item}:
+            component ${componentPath}
+
+

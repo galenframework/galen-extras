@@ -1,0 +1,38 @@
+
+@import galen-extras/galen-extras-rules.gspec
+
+@objects
+    box-*           #box-container .box
+    menu            #menu
+        item-*          ul li
+
+
+= Header =
+    header:
+        inside screen 0px top left right
+
+= Menu =
+    menu: 
+        below header 0px
+        height 64px
+
+    menu.item-1:
+        inside menu 0px top left bottom
+
+    | amount of menu.item-* should be 4
+
+    = Should adapt layout  =
+        @on desktop, tablet
+            | menu.item-* are aligned horizontally next to each other with 0 to 5px margin
+
+        @on mobile
+            | menu.item-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margin
+    
+
+= Main section = 
+    | box-* are aligned horizontally next to each other with equal distance
+
+    | test box-* with box.gspec
+
+
+    
