@@ -96,7 +96,7 @@
 #
 #   | home_box_* are aligned horizontally next to each other with 10 to 30px margin
 #
-@rule %{objectPattern} are aligned horizontally next to each other with ${margin} margin
+@rule %{objectPattern} are aligned horizontally next to each other with %{margin} margin
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
             aligned horizontally all ${nextItem}
@@ -109,7 +109,7 @@
 #
 #   | home_box_* are aligned vertically above each other with 10 to 20 px margin
 #
-@rule %{objectPattern} are aligned vertically above each other with ${margin} margin
+@rule %{objectPattern} are aligned vertically above each other with %{margin} margin
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
             aligned vertically all ${nextItem}
@@ -134,11 +134,26 @@
 # Validate all matching objects using specified component spec
 # e.g.
 #
-#   | test box-* with components/box.gspec
+#   | test all box-* with components/box.gspec
 #
-@rule test %{objectPattern} with %{componentPath}
-    @forEach [${objectPattern] as item
+@rule test all %{objectPattern} with %{componentPath}
+    @forEach [${objectPattern}] as item
         ${item}:
             component ${componentPath}
+
+# Apply spec to all elements in a single line
+# e.g.
+#
+#   | every menu.item-* is inside menu 0px top bottom
+#
+# or
+#
+#   | every menu.item-* has width 100px
+#
+@rule every %{objectPattern} %{verb: is|has} %{spec}
+    @forEach [${objectPattern}] as item
+        ${item}:
+            ${spec}
+
 
 

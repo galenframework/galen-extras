@@ -1,4 +1,14 @@
 
+this.lastName = function (objectPattern) {
+    var all = findAll(objectPattern);
+
+    if (all.length > 0) {
+        return all[all.length - 1].name;
+    } else {
+        throw new Error("Cannot find last element of " + objectPattern + ". Could find any elements");
+    }
+};
+
 function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizontalMargin) {
     var allItems = findAll(itemPattern);
 
@@ -6,7 +16,7 @@ function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizo
 
     for (var i = 0; i < allItems.length - 1; i += 1) {
         if (currentColumn < columns - 1) {
-            this.addObjectSpecs(allItems[i].name, [
+            rule.addObjectSpecs(allItems[i].name, [
                 "left-of " + allItems[i + 1].name + " " + horizontalMargin,
                 "aligned horizontally all " + allItems[i + 1].name
             ]);
@@ -15,7 +25,7 @@ function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizo
         var j = i + columns;
 
         if (j < allItems.length) {
-            this.addObjectSpecs(allItems[i].name, [
+            rule.addObjectSpecs(allItems[i].name, [
                 "above " + allItems[j].name + " " + verticalMargin,
                 "aligned vertically all " + allItems[j].name
             ]);
@@ -79,3 +89,14 @@ rule("if none of %{objectPattern} are visible", function (objectName, parameters
     });
 });
 
+
+rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin left and right", function (objectName, parameters) {
+   var items = findAll(parameters.objectPattern);
+
+    if (items.length > 0) {
+        this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " " + parameters.margin + " left"]);
+        this.addObjectSpecs(items[items.length - 1].name, ["inside " + parameters.containerObject + " " + parameters.margin + " right"]);
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});

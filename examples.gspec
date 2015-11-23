@@ -2,37 +2,77 @@
 @import galen-extras/galen-extras-rules.gspec
 
 @objects
-    box-*           #box-container .box
-    menu            #menu
-        item-*          ul li
+    header              #header .middle-wrapper
+    box-*               .box-container .box .panel
+    menu                #menu  .middle-wrapper
+        item-*              ul li
+    content             #content
+    greeting            #content h1
+    footer              #footer .middle-wrapper
+
+@groups
+    (box, boxes)                box-*
+    (menu_item, menu_items)     menu.item-*
+    first_menu_item             menu.item-1
+    skeleton_elements           header, menu, content, footer
 
 
-= Header =
+= Skeleton =
     header:
-        inside screen 0px top left right
+        inside screen 0px top
 
-= Menu =
-    menu: 
-        below header 0px
-        height 64px
+    footer:
+        inside screen 0px bottom
 
-    menu.item-1:
-        inside menu 0px top left bottom
+    &skeleton_elements:
+        @on *
+            width < 901px
 
-    | amount of menu.item-* should be 4
+        @on desktop
+            width 900px
+            centered horizontally inside screen
 
-    = Should adapt layout  =
+        @on mobile, tablet
+            aligned vertically all screen
+            
+    | &skeleton_elements are aligned vertically above each other with 0 to 1px margin
+
+    = Menu items should adapt layout  =
+        @on *
+            | amount of &menu_items should be 4
+
+            &menu_items:
+                height ~ 64px
+                inside menu
+
+            &first_menu_item:
+                inside menu 0px top left
+
         @on desktop, tablet
-            | menu.item-* are aligned horizontally next to each other with 0 to 5px margin
+            | &menu_items are aligned horizontally next to each other with 0 to 5px margin
 
         @on mobile
-            | menu.item-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margin
-    
-
-= Main section = 
-    | box-* are aligned horizontally next to each other with equal distance
-
-    | test box-* with box.gspec
+            | &menu_items are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margin 
 
 
-    
+= Main Section = 
+    = Greeting =
+        greeting:
+            height 30 to 60px
+            inside content 40px top, 20px left right
+        
+    = Boxes = 
+        @on *
+            | amount of &boxes should be 3
+            #| test all &boxes with box.gspec
+
+        @on desktop, tablet
+            | &boxes are aligned horizontally next to each other with equal distance
+            | &box sides are inside content with 20px margin left and right
+            | every &box is below greeting ~ 10px
+
+        @on mobile
+            | &boxes are aligned vertically above each other with 20px margin
+            | every &box is inside content 20px left right
+
+

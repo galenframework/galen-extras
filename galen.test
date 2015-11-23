@@ -1,0 +1,14 @@
+
+
+
+
+@@ table devices
+    | tag       | size      |
+    | desktop   | 1024x768  |
+    | tablet    | 800x600   |
+    | mobile    | 500x700   |
+
+@@ parameterized using devices
+Home page test on ${tag} device
+    file:///${user.dir}/website/index.html ${size}
+        check examples.gspec --include "${tag}"
