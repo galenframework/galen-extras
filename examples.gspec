@@ -18,28 +18,27 @@
 
 
 = Skeleton =
-    header:
-        inside screen 0px top
 
-    footer:
-        inside screen 0px bottom
+    | &skeleton_elements sides are inside screen with 0px margin from top and bottom 
 
-    &skeleton_elements:
-        @on *
-            width < 901px
+    = A page should be centered horizontally inside screen with 900px on desktop, but on mobile and tablet it should stretch to screen =
+        &skeleton_elements:
+            @on *
+                width < 901px
 
-        @on desktop
-            width 900px
-            centered horizontally inside screen
+            @on desktop
+                width 900px
+                centered horizontally inside screen
 
-        @on mobile, tablet
-            aligned vertically all screen
+            @on mobile, tablet
+                aligned vertically all screen
+
             
     | &skeleton_elements are aligned vertically above each other with 0 to 1px margin
 
     = Menu items should adapt layout  =
         @on *
-            | amount of &menu_items should be 4
+            | amount of visible &menu_items should be 4
 
             &menu_items:
                 height ~ 64px
@@ -55,6 +54,7 @@
             | &menu_items are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margin 
 
 
+
 = Main Section = 
     = Greeting =
         greeting:
@@ -63,12 +63,11 @@
         
     = Boxes = 
         @on *
-            | amount of &boxes should be 3
-            #| test all &boxes with box.gspec
+            | amount of visible &boxes should be 3
 
         @on desktop, tablet
             | &boxes are aligned horizontally next to each other with equal distance
-            | &box sides are inside content with 20px margin left and right
+            | &box sides are inside content with 20px margin from left and right
             | every &box is below greeting ~ 10px
 
         @on mobile

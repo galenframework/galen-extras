@@ -90,13 +90,21 @@ rule("if none of %{objectPattern} are visible", function (objectName, parameters
 });
 
 
-rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin left and right", function (objectName, parameters) {
-   var items = findAll(parameters.objectPattern);
+rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin from %{sideAName} and %{sideBName}", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+
 
     if (items.length > 0) {
-        this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " " + parameters.margin + " left"]);
-        this.addObjectSpecs(items[items.length - 1].name, ["inside " + parameters.containerObject + " " + parameters.margin + " right"]);
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " " + parameters.sideAName ]);
+        
+        for (var i = 1; i < items.length - 1; i++) {
+            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
+        }
+
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " " + parameters.sideBName ]);
     } else {
         throw new Error("Couldn't find any items matching " + parameters.objectPattern);
     }
 });
+
+

@@ -55,9 +55,9 @@
 #
 #   | amount of menu-item should be > 4
 #
-@rule amount of %{objectPattern} should be %{amount}
+@rule amount of %{visibilityType: any|visible|absent} %{objectPattern} should be %{amount}
     global:
-        count any "${objectPattern}" is ${amount}
+        count ${visibilityType} "${objectPattern}" is ${amount}
 
 
 
@@ -140,6 +140,8 @@
     @forEach [${objectPattern}] as item
         ${item}:
             component ${componentPath}
+
+
 
 # Apply spec to all elements in a single line
 # e.g.

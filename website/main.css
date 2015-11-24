@@ -73,6 +73,9 @@ body {
     color: white;
     min-height: 200px;
 }
+#footer .middle-wrapper {
+    height: 200px;
+}
 
 @media (max-width: 500px) {
     .not-on-mobile {
