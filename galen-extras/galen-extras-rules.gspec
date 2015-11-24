@@ -18,9 +18,9 @@
 # allowing 10% difference between width and height
 # e.g.
 #
-#   | header-icon, menu-button should almost be squared
+#   | header-icon, menu-button should be almost squared
 #
-@rule %{objectPattern} should almost be squared
+@rule %{objectPattern} should be almost squared
     @forEach [${objectPattern}] as item
         ${item}:
             width 90 to 110% of ${objectName}/height
@@ -53,7 +53,11 @@
 # Checking amount of objects
 # e.g. 
 #
-#   | amount of menu-item should be > 4
+#   | amount of any menu.item should be > 4
+#
+# or
+#
+#   | amount of visible menu.item-* should be 5 to 6
 #
 @rule amount of %{visibilityType: any|visible|absent} %{objectPattern} should be %{amount}
     global:
@@ -117,10 +121,10 @@
 
 
 
-# Check that element appears and hides on different tags
+# Check that elements appear and hide on different tags
 # e.g.
 #
-#   | login-button, menu-item-* should be visible on desktop, tablet but absent on mobile
+#   | login_button, menu.item-* should be visible on desktop, tablet but absent on mobile
 #
 @rule %{objectPatterns} should be visible on %{tagsVisible} but absent on %{tagsAbsent}
     ${objectPatterns}:
