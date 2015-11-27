@@ -1,0 +1,19 @@
+@import galen-extras/galen-extras-rules.gspec
+
+@objects
+    heading         .panel-heading
+    body            .panel-body
+
+
+= Panel contents =
+    heading:
+        inside parent 0 to 1px top left right
+        height ~ 41px
+
+    | heading, body sides are inside parent with 0 to 1px margin from top and bottom
+
+    | heading, body are aligned vertically above each other with 0 to 1px margin
+
+
+    
+

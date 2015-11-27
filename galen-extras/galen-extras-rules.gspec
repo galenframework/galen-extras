@@ -163,3 +163,61 @@
 
 
 
+# Apply spec to only first element in a single line
+# e.g.
+#
+#   | first menu.item-* is inside menu 0px top bottom
+#
+# or
+#
+#   | first menu.item-* has width 100px
+#
+@rule first %{objectPattern} %{verb: is|has} %{spec}
+    @if ${count(objectPattern) > 0}
+        ${first(objectPattern).name}:
+            ${spec}
+
+
+
+# Apply spec to only last element in a single line
+# e.g.
+#
+#   | last menu.item-* is inside menu 0px top bottom
+#
+# or
+#
+#   | last menu.item-* has width 100px
+#
+@rule last %{objectPattern} %{verb: is|has} %{spec}
+    @if ${count(objectPattern) > 0}
+        ${last(objectPattern).name}:
+            ${spec}
+
+
+
+# Apply rule body to only first element
+# e.g.
+#
+#   | first menu.item-* :
+#       below header 10px       
+#       inside main_container 0px top left
+#
+@rule first %{objectPattern}:
+    @if ${count(objectPattern) > 0}
+        ${first(objectPattern).name}:
+            @ruleBody
+
+
+# Apply rule body to only last element
+# e.g.
+#
+#   | last menu.item-* :
+#       above footer 10px       
+#       inside main_container 0px left right
+#
+@rule last %{objectPattern}:
+    @if ${count(objectPattern) > 0}
+        ${last(objectPattern).name}:
+            @ruleBody
+
+

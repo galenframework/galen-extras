@@ -13,13 +13,13 @@
 @groups
     (box, boxes)                box-*
     (menu_item, menu_items)     menu.item-*
-    first_menu_item             menu.item-1
     skeleton_elements           header, menu, content, footer
+    image_validation            header, menu.item-*
 
 
 = Skeleton =
-
     | &skeleton_elements sides are inside screen with 0px margin from top and bottom 
+
 
     = A page should be centered horizontally inside screen with 900px on desktop, but on mobile and tablet it should stretch to screen =
         &skeleton_elements:
@@ -44,8 +44,7 @@
                 height ~ 64px
                 inside menu
 
-            &first_menu_item:
-                inside menu 0px top left
+            | first &menu_item is inside menu 0px top left
 
         @on desktop, tablet
             | &menu_items are aligned horizontally next to each other with 0 to 5px margin
@@ -54,24 +53,25 @@
             | &menu_items are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margin 
 
 
-
 = Main Section = 
     = Greeting =
         greeting:
             height 30 to 60px
             inside content 40px top, 20px left right
-        
-    = Boxes = 
+
         @on *
             | amount of visible &boxes should be 3
+            | test all &boxes with box-component.gspec
 
         @on desktop, tablet
             | &boxes are aligned horizontally next to each other with equal distance
             | &box sides are inside content with 20px margin from left and right
             | every &box is below greeting ~ 10px
+            | every &box is above footer > 19px
 
         @on mobile
             | &boxes are aligned vertically above each other with 20px margin
             | every &box is inside content 20px left right
-
+            | first &box is below greeting ~ 10px
+            | last &box is above footer > 19px
 

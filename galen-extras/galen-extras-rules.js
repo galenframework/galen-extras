@@ -1,14 +1,4 @@
 
-this.lastName = function (objectPattern) {
-    var all = findAll(objectPattern);
-
-    if (all.length > 0) {
-        return all[all.length - 1].name;
-    } else {
-        throw new Error("Cannot find last element of " + objectPattern + ". Could find any elements");
-    }
-};
-
 function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizontalMargin) {
     var allItems = findAll(itemPattern);
 
