@@ -59,7 +59,7 @@ Documentation
 In this section you will find syntax explanation for all rules and examples.
 
 
-##### Squared elements
+### Squared elements
 
 Allows to check that element has equal width and height.
 
@@ -83,7 +83,7 @@ Syntax: `squared`
 ```
 
 
-##### Almost squared elements
+### Almost squared elements
 
 Same as `squared` rule but it allows an error rate of 10%
 
@@ -107,7 +107,7 @@ Syntax: `almost squared`
 ```
 
 
-##### Width/Height Ratio
+### Width/Height Ratio
 
 You can check the exact ratio of width/height in percentage
 
@@ -131,7 +131,7 @@ Syntax: `%{ratio}% width/height ratio`
 ```
 
 
-##### Testing amount of objects
+### Testing amount of objects
 
 In Galen you can check the amount of objects using just the 2 lines of code:
 
@@ -168,7 +168,7 @@ or
 ```
 
 
-##### Alignment of multiple elements with equal distance
+### Alignment of multiple elements with equal distance
 
 A very common situation when you have elements on the page aligned either vertically or horizontally. At the same time their margin might change depending on page width.
 The following rules will help you when you can't know the exact margin and you just want to check that it is consistent.
@@ -192,7 +192,7 @@ Syntax: `%{objectPattern} are aligned vertically above each other with equal dis
 ```
 
 
-##### Alignment of multiple elements with specific margin
+### Alignment of multiple elements with specific margin
 
 Similar to the above statement but in this case you can declare a specific margin between elements
 
@@ -216,7 +216,7 @@ Syntax: `%{objectPattern} are aligned vertically above each other with %{margin}
     | box-* are aligned vertically above each other with 25 to 30px margin
 ```
 
-##### Table layout
+### Table layout
 
 Allows to check that a set of elements is displayed in simple table. You can define the amount of columns for this table layout.
 
@@ -239,7 +239,7 @@ Syntax: `%{itemPattern} are rendered in %{columns} column table layout, with %{v
 ```
 
 
-##### Location of sides of multiple elements inside a container
+### Location of sides of multiple elements inside a container
 
 The following statement checks that a set of elements is located inside specified container and that the first and last element have a specific margin from sides between the container sides.
 
@@ -256,7 +256,7 @@ or
     | box-* sides are inside box_container with > 0px margin from top and bottom
 ```
 
-##### Common Conditions
+### Common Conditions
 
 The following common conditions allow you to insert your own code block and invoke only if condition succeeds.
 
@@ -294,7 +294,7 @@ Syntax: `if none of %{objectPattern} are visible`
 ```
 
 
-##### Appearance of elements per breakpoints
+### Appearance of elements per breakpoints
 
 Quite often you have elements of the website that are hidden on small devices and are only shown on large layouts.
 You can use the following statements to express that behaviour
@@ -307,7 +307,7 @@ Syntax: `%{objectPatterns} should be visible on %{tagsVisible} but absent on %{t
 ```
 
 
-##### Component validations for multiple elements
+### Component validations for multiple elements
 
 Allows to specify a component check for a set of elements
 
@@ -318,7 +318,7 @@ Syntax: `test all %{objectPattern} with %{componentPath}`
     | test all box-* with components/box.gspec
 ```
 
-##### Applying generic checks for multiple elements in a single line
+### Applying generic checks for multiple elements in a single line
 
 This is usefull when you have repetitive specs for different elements and you don't want to use forEach loops. Basically if you have forEach loop for one iterated object and one spec for it, you can do in a single statement using this rule.
 
@@ -332,7 +332,7 @@ Syntax 2: `every %{objectPattern} has %{spec}`
 ```
 
 
-##### Checking only first element from given expression
+### Checking only first element from given expression
 
 Often when working with set of elements you need to check only the first one or the last
 
@@ -344,7 +344,7 @@ Syntax 2: `first %{objectPattern} has %{spec}`
     | first menu.item-* has width 100px
 ```
 
-##### Checking only last element from given expression
+### Checking only last element from given expression
 
 Same as above, but this time it checks the last element
 
@@ -357,7 +357,7 @@ Syntax 2: `last %{objectPattern} has %{spec}`
 ```
 
 
-##### Applying multiple checks for only first element from given expression
+### Applying multiple checks for only first element from given expression
 
 Allows to apply multiple specs to only first element
 
@@ -370,7 +370,7 @@ Syntax: `first %{objectPattern}:`
 ```
 
 
-##### Applying multiple checks for only last element from given expression
+### Applying multiple checks for only last element from given expression
 
 Allows to apply multiple specs to only last element
 
