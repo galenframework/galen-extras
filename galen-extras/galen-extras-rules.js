@@ -65,6 +65,18 @@ function _applyRuleBodyForAllElements(rule, objectPattern, appliesConditionCallb
     }
 }
 
+function _applyRuleBodyForSingleElement(rule, objectPattern, appliesConditionCallback) {
+    var allElements = findAll(parameters.objectPattern);
+
+    if (allElements.length > 0) {
+        for (var i = 0; i < allElements.length - 1; i += 1) {
+            if (appliesConditionCallback(allElements[i])) {
+                rule.doRuleBody();
+                return;
+            }
+        }
+    }
+}
 
 rule("if all %{objectPattern} are visible", function (objectName, parameters) {
     _applyRuleBodyForAllElements(this, parameters.objectPattern, function (element) {
@@ -76,6 +88,12 @@ rule("if all %{objectPattern} are visible", function (objectName, parameters) {
 rule("if none of %{objectPattern} are visible", function (objectName, parameters) {
     _applyRuleBodyForAllElements(this, parameters.objectPattern, function (element) {
         return ! element.isVisible();
+    });
+});
+
+rule("if any of %{objectPattern} is visible", function (objectName, parameters) {
+    _applyRuleBodyForSingleElement(this, parameters.objectPattern, function (element) {
+        return element.isVisible();
     });
 });
 

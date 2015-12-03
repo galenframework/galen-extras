@@ -50,6 +50,28 @@
 
 
 
+# Checks width/height ratio in percentage of all specified objects
+# e.g.
+#
+# | login_button, cancel_button should have 130% width/height ratio
+#
+@rule %{itemPattern} should have %{ratio}% width/height ratio
+    @forEach [${itemPattern}] as item
+        ${item}:
+            height ${ratio} % of ${item}/width
+
+
+
+# Checks width/height ratio in percentage
+# e.g.
+#
+# | login_button, cancel_button should have 130% width/height ratio
+#
+@rule %{ratio}% width/height ratio
+    height ${ratio} % of ${objectName}/width
+
+
+
 # Checking amount of objects
 # e.g. 
 #
@@ -73,10 +95,12 @@
 @rule %{objectPattern} are aligned horizontally next to each other with equal distance
     @if ${count(objectPattern) > 1}
         @set _distance_ ${var all = findAll(objectPattern); Math.abs(all[1].left() - all[0].right())}
+        @set _distance_a ${parseInt(_distance_) - 1}
+        @set _distance_b ${parseInt(_distance_) + 1}
         @forEach [${objectPattern}] as item, next as nextItem
             ${item}:
                 aligned horizontally all ${nextItem}
-                left-of ${nextItem} ${_distance_} px
+                left-of ${nextItem} ${_distance_a} to ${_distance_b} px
 
 
 
