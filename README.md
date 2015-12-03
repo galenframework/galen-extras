@@ -3,7 +3,7 @@ Works only in galen version 2.2.0 (which is not yet released)
 Galen Extras
 ============
 
-Galen Extras is a library for extending the [Galen Specs Language](http://galenframework.com/docs/reference-galen-spec-language-guide/) with most common complex expression, which allows you to have minimal code and maximum test coverage.
+Galen Extras is a library for extending the [Galen Specs Language](http://galenframework.com/docs/reference-galen-spec-language-guide/) with most common complex expressions, which allows you to have minimal code and maximum test coverage.
 
 Here is a small example which describes all layouts of menu items on responsive website:
 
@@ -66,6 +66,7 @@ Allows to check that element has equal width and height.
 ###### For multiple elements
 
 Scope: Section
+
 Syntax: `%{objectPattern} should be squared`
 
 ```
@@ -75,6 +76,7 @@ Syntax: `%{objectPattern} should be squared`
 ###### For single elements
 
 Scope: Object
+
 Syntax: `squared`
 
 ```
@@ -90,6 +92,7 @@ Same as `squared` rule but it allows an error rate of 10%
 ###### For multiple elements
 
 Scope: Section
+
 Syntax: `%{objectPattern} should be almost squared`
 
 ```
@@ -99,6 +102,7 @@ Syntax: `%{objectPattern} should be almost squared`
 ###### For single elements
 
 Scope: Object
+
 Syntax: `almost squared`
 
 ```
@@ -114,6 +118,7 @@ You can check the exact ratio of width/height in percentage
 ###### Multiple elements
 
 Scope: Section
+
 Syntax: `%{itemPattern} should have %{ratio}% width/height ratio`
 
 ```
@@ -123,6 +128,7 @@ Syntax: `%{itemPattern} should have %{ratio}% width/height ratio`
 ###### Single elements
 
 Scope: Object
+
 Syntax: `%{ratio}% width/height ratio`
 
 ```
@@ -143,7 +149,9 @@ In Galen you can check the amount of objects using just the 2 lines of code:
 But it is not very human readable. By using the rule below you can express this validation in simple sentence
 
 Scope: Section
+
 Syntax: `amount of %{visibilityType} %{objectPattern} should be %{amount}`
+
 where `visibilityType` can take `any`, `visible` or `absent` values
 
 e.g. amount of any elements:
@@ -175,7 +183,8 @@ The following rules will help you when you can't know the exact margin and you j
 
 ###### Horizontal
 
-Scope: section
+Scope: Section
+
 Syntax: `%{objectPattern} are aligned horizontally next to each other with equal distance`
 
 ```
@@ -185,6 +194,7 @@ Syntax: `%{objectPattern} are aligned horizontally next to each other with equal
 ###### Vertical
 
 Scope: Section
+
 Syntax: `%{objectPattern} are aligned vertically above each other with equal distance`
 
 ```
@@ -199,6 +209,7 @@ Similar to the above statement but in this case you can declare a specific margi
 ###### Horizontal
 
 Scope: Section
+
 Syntax: `%{objectPattern} are aligned horizontally next to each other with %{margin} margin`
 
 ```
@@ -209,6 +220,7 @@ Syntax: `%{objectPattern} are aligned horizontally next to each other with %{mar
 ###### Vertical
 
 Scope: Section
+
 Syntax: `%{objectPattern} are aligned vertically above each other with %{margin} margin`
 
 ```
@@ -223,6 +235,7 @@ Allows to check that a set of elements is displayed in simple table. You can def
 ###### Table layout with equal cols and rows margin
 
 Scope: Section
+
 Syntax: `%{itemPattern} are rendered in %{columns} column table layout, with %{margin} margin`
 
 ```
@@ -232,6 +245,7 @@ Syntax: `%{itemPattern} are rendered in %{columns} column table layout, with %{m
 ###### Table layout with different cols and rows margin
 
 Scope: Section
+
 Syntax: `%{itemPattern} are rendered in %{columns} column table layout, with %{verticalMargin} vertical and %{horizontalMargin} horizontal margins`
 
 ```
@@ -244,6 +258,7 @@ Syntax: `%{itemPattern} are rendered in %{columns} column table layout, with %{v
 The following statement checks that a set of elements is located inside specified container and that the first and last element have a specific margin from sides between the container sides.
 
 Syntax: `%{objectPattern} sides are inside %{containerObject} with %{margin} margin from %{sideAName} and %{sideBName}`
+
 where `sideAName` and `sideBName` can take the following values: `left`, `right`, `top`, `bottom`
 
 ```
@@ -263,6 +278,7 @@ The following common conditions allow you to insert your own code block and invo
 ###### If all elements are visible
 
 Scope: Any
+
 Syntax: `if all %{objectPattern} are visible`
 
 ```
@@ -274,6 +290,7 @@ Syntax: `if all %{objectPattern} are visible`
 ###### If any of elements is visible:
 
 Scope: Any
+
 Syntax: `if any of %{objectPattern} is visible`
 
 ```
@@ -285,6 +302,7 @@ Syntax: `if any of %{objectPattern} is visible`
 ###### If none of elements are visible:
 
 Scope: Any
+
 Syntax: `if none of %{objectPattern} are visible`
 
 ```
@@ -300,6 +318,7 @@ Quite often you have elements of the website that are hidden on small devices an
 You can use the following statements to express that behaviour
 
 Scope: Section
+
 Syntax: `%{objectPatterns} should be visible on %{tagsVisible} but absent on %{tagsAbsent}`
 
 ```
@@ -312,6 +331,7 @@ Syntax: `%{objectPatterns} should be visible on %{tagsVisible} but absent on %{t
 Allows to specify a component check for a set of elements
 
 Scope: Section
+
 Syntax: `test all %{objectPattern} with %{componentPath}`
 
 ```
@@ -322,8 +342,11 @@ Syntax: `test all %{objectPattern} with %{componentPath}`
 
 This is usefull when you have repetitive specs for different elements and you don't want to use forEach loops. Basically if you have forEach loop for one iterated object and one spec for it, you can do in a single statement using this rule.
 
+
 Scope: Section
+
 Syntax 1: `every %{objectPattern} is %{spec}`
+
 Syntax 2: `every %{objectPattern} has %{spec}`
 
 ```
@@ -337,6 +360,7 @@ Syntax 2: `every %{objectPattern} has %{spec}`
 Often when working with set of elements you need to check only the first one or the last
 
 Syntax 1: `first %{objectPattern} is %{spec}`
+
 Syntax 2: `first %{objectPattern} has %{spec}`
 
 ```
@@ -349,6 +373,7 @@ Syntax 2: `first %{objectPattern} has %{spec}`
 Same as above, but this time it checks the last element
 
 Syntax 1: `last %{objectPattern} is %{spec}`
+
 Syntax 2: `last %{objectPattern} has %{spec}`
 
 ```
@@ -375,7 +400,7 @@ Syntax: `first %{objectPattern}:`
 Allows to apply multiple specs to only last element
 
 Syntax: `last %{objectPattern}:`
-e.g.
+
 ```
     | last menu.item-* :
         below header 10px       
