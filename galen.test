@@ -10,5 +10,5 @@
 
 @@ parameterized using devices
 Home page test on ${tag} device
-    file:///${user.dir}/website/index.html ${size}
+    file:///${user.dir}/${websiteFolder}/index.html ${size}
         check examples.gspec --include "${tag}"
