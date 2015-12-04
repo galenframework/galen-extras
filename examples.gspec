@@ -14,36 +14,26 @@
     (box, boxes)                box-*
     (menu_item, menu_items)     menu.item-*
     skeleton_elements           header, menu, content, footer
+    skeleton_element            &skeleton_elements
     image_validation            header, menu.item-*
 
 
 = Skeleton =
     | &skeleton_elements sides are inside screen with 0px margin from top and bottom 
-
+    | &skeleton_elements are aligned vertically above each other with 0 to 1px margin
 
     = A page should be centered horizontally inside screen with 900px on desktop, but on mobile and tablet it should stretch to screen =
-        &skeleton_elements:
-            @on *
-                width < 901px
+        | every &skeleton_element is centered horizontally inside screen
 
-            @on desktop
-                width 900px
-                centered horizontally inside screen
-
-            @on mobile, tablet
-                aligned vertically all screen
-
-            
-    | &skeleton_elements are aligned vertically above each other with 0 to 1px margin
+        @on desktop
+            | every &skeleton_element has width 900px
+        @on mobile, tablet
+            | every &skeleton_element is aligned vertically all screen
 
     = Menu items should adapt layout  =
         @on *
             | amount of visible &menu_items should be 4
-
-            &menu_items:
-                height ~ 64px
-                inside menu
-
+            | every &menu_item is inside menu and has height ~ 64px
             | first &menu_item is inside menu 0px top left
 
         @on desktop, tablet
