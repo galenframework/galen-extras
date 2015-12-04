@@ -359,9 +359,13 @@ Syntax 2: `every %{objectPattern} has %{spec}`
 Similar to the above statement, this one allows to have two specs separated by word `and`
 
 Scope: Section
+
 Syntax 1: `every %{objectPattern} is %{spec1} and has %{spec2}`
+
 Syntax 2: `every %{objectPattern} has %{spec1} and is %{spec2}`
+
 Syntax 3: `every %{objectPattern} has %{spec1} and has %{spec2}`
+
 Syntax 4: `every %{objectPattern} is %{spec1} and is %{spec2}`
 
 ```
