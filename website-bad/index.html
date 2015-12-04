@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sample Website for Galen Framework</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="main.css?v=3" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script src="js/handlebars-v1.3.0.js"></script>
+    </head>
+    <body>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/myapp.js?v=3"></script>
+        <script>
+            $(function () {
+                App.init();
+                App.showWelcomePage();
+                // App.showLoginPage();
+            });
+        </script>
+
+        <div id="header">
+            <div class="middle-wrapper">
+                <img id="header-logo" src="images/header-icon.png"/> <h1> Sample Website <span class="not-on-mobile not-on-tablet">for Galen Framework</span></h1>
+            </div>
+        </div>
+        <div id="menu">
+            <div class="middle-wrapper">
+                <ul>
+                    <li cass="when-not-logged"><a href="#">Home</a></li>
+                    <li class="when-logged menu-item-bug"><a href="#">My Notes</a></li>
+                    <li class="when-logged"><a href="#">About</a></li>
+                    <li class="when-logged"><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="middle">
+            <div class="middle-wrapper">
+                <div id="content">
+                    <h1>Welcome to our test page!</h1>
+
+                    <div class="row box-container">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 box">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Item 1</div>
+                                <div class="panel-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 box">
+                            <div class="panel panel-default box-bug">
+                                <div class="panel-heading">Item 2</div>
+                                <div class="panel-body">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 box">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Item 3</div>
+                                <div class="panel-body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="middle-wrapper">
+                <div class="signature">
+                    <p>
+                        Sample website
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
