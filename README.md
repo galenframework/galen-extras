@@ -354,6 +354,19 @@ Syntax 2: `every %{objectPattern} has %{spec}`
     | every menu.item-* has width 100px
 ```
 
+### Applying two specs for multiple elements in a single line
+
+Similar to the above statement, this one allows to have two specs separated by word `and`
+
+Scope: Section
+Syntax 1: `every %{objectPattern} is %{spec1} and has %{spec2}`
+Syntax 2: `every %{objectPattern} has %{spec1} and is %{spec2}`
+Syntax 3: `every %{objectPattern} has %{spec1} and has %{spec2}`
+Syntax 4: `every %{objectPattern} is %{spec1} and is %{spec2}`
+
+```
+    | every menu.item-* is inside menu 0px top bottom and has width 100px
+```
 
 ### Checking only first element from given expression
 
