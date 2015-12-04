@@ -170,6 +170,21 @@
             component ${componentPath}
 
 
+# Apply two specs to all elements in a single line
+# e.g.
+#
+#   | every menu.item-* is inside menu 0px top bottom and has width 100px
+#
+# or
+#
+#   | every menu.item-* has width and is inside menu 0px top bottom
+#
+@rule every %{objectPattern} %{verb: is|has} %{spec1} and %{verb2: is|has} %{spec2}
+    @forEach [${objectPattern}] as item
+        ${item}:
+            ${spec1}
+            ${spec2}
+
 
 # Apply spec to all elements in a single line
 # e.g.
