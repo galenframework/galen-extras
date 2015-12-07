@@ -44,7 +44,7 @@ rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, wit
  * with different margins for vertical and horizontal sides
  * e.g.
  *
- *      | menuItem-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margin
+ *      | menuItem-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margins
  */
 rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{verticalMargin} vertical and %{horizontalMargin} horizontal margins", function (objectName, parameters) {
     _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), parameters.verticalMargin, parameters.horizontalMargin);
