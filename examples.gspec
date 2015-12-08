@@ -40,7 +40,7 @@
             | &menu_items are aligned horizontally next to each other with 0 to 5px margin
 
         @on mobile
-            | &menu_items are rendered in 2 column table layout, with 0px vertical and 0 to 4px horizontal margins
+            | &menu_items are rendered in 2 column table layout, with 0px vertical and 0 to 4px horizontal margin
 
 
 = Main Section = 

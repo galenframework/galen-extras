@@ -29,6 +29,18 @@ function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizo
 }
 
 /**
+ * This is a high-level spec for checking that elements are displayed in table layout 
+ * with different margins for vertical and horizontal sides
+ * e.g.
+ *
+ *      | menuItem-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margins
+ */
+rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{verticalMargin} vertical and %{horizontalMargin} horizontal margin", function (objectName, parameters) {
+    _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), parameters.verticalMargin, parameters.horizontalMargin);
+});
+
+
+/**
  * This is a high-level spec for checking that elements are displayed in table layout
  * e.g.
  *
@@ -37,19 +49,6 @@ function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizo
 rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{margin} margin", function (objectName, parameters) {
     _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), parameters.margin, parameters.margin);
 });
-
-
-/**
- * This is a high-level spec for checking that elements are displayed in table layout 
- * with different margins for vertical and horizontal sides
- * e.g.
- *
- *      | menuItem-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margins
- */
-rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{verticalMargin} vertical and %{horizontalMargin} horizontal margins", function (objectName, parameters) {
-    _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), parameters.verticalMargin, parameters.horizontalMargin);
-});
-
 
 
 function _applyRuleBodyForAllElements(rule, objectPattern, appliesConditionCallback) {
