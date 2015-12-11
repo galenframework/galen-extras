@@ -239,7 +239,7 @@ Syntax: `%{objectPattern} are aligned vertically above each other with %{margin}
 ### Table layout
 
 Allows to check that a set of elements is displayed in simple table. You can define the amount of columns for this table layout.
-![](http://galenframework.github.io/galen-extras/images/sketch-tablet-layout.png)
+![](http://galenframework.github.io/galen-extras/images/sketch-table-layout.png)
 
 ###### Table layout with equal cols and rows margin
 
@@ -270,14 +270,17 @@ Syntax: `%{objectPattern} sides are inside %{containerObject} with %{margin} mar
 
 where `sideAName` and `sideBName` can take the following values: `left`, `right`, `top`, `bottom`
 
+###### Left and Right
+
 ![](http://galenframework.github.io/galen-extras/images/sketch-sides-horizontal.png)
 
 ```
     | menu.item-* sides are inside menu with > 0px margin from left and right
 ```
 
-Vertical
+###### Top and Bottom
 
+![](http://galenframework.github.io/galen-extras/images/sketch-sides-vertical.png)
 
 ```
     | box-* sides are inside box_container with > 0px margin from top and bottom
