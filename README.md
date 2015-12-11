@@ -63,6 +63,8 @@ In this section you will find syntax explanation for all rules and examples.
 
 Allows to check that element has equal width and height.
 
+![](http://galenframework.github.io/galen-extras/images/sketch-squared.png)
+
 ###### For multiple elements
 
 Scope: Section
@@ -89,6 +91,8 @@ Syntax: `squared`
 
 Same as `squared` rule but it allows an error rate of 10%
 
+![](http://galenframework.github.io/galen-extras/images/sketch-squared-almost.png)
+
 ###### For multiple elements
 
 Scope: Section
@@ -114,6 +118,8 @@ Syntax: `almost squared`
 ### Width/Height Ratio
 
 You can check the exact ratio of width/height in percentage
+
+![](http://galenframework.github.io/galen-extras/images/sketch-width-ratio.png)
 
 ###### Multiple elements
 
@@ -182,6 +188,7 @@ A very common situation when you have elements on the page aligned either vertic
 The following rules will help you when you can't know the exact margin and you just want to check that it is consistent.
 
 ###### Horizontal
+![](http://galenframework.github.io/galen-extras/images/sketch-horizontal-align.png) 
 
 Scope: Section
 
@@ -192,6 +199,7 @@ Syntax: `%{objectPattern} are aligned horizontally next to each other with equal
 ```
 
 ###### Vertical
+![](http://galenframework.github.io/galen-extras/images/sketch-vertical-align.png)
 
 Scope: Section
 
@@ -231,6 +239,7 @@ Syntax: `%{objectPattern} are aligned vertically above each other with %{margin}
 ### Table layout
 
 Allows to check that a set of elements is displayed in simple table. You can define the amount of columns for this table layout.
+![](http://galenframework.github.io/galen-extras/images/sketch-tablet-layout.png)
 
 ###### Table layout with equal cols and rows margin
 
@@ -261,11 +270,14 @@ Syntax: `%{objectPattern} sides are inside %{containerObject} with %{margin} mar
 
 where `sideAName` and `sideBName` can take the following values: `left`, `right`, `top`, `bottom`
 
+![](http://galenframework.github.io/galen-extras/images/sketch-sides-horizontal.png)
+
 ```
     | menu.item-* sides are inside menu with > 0px margin from left and right
 ```
 
-or
+Vertical
+
 
 ```
     | box-* sides are inside box_container with > 0px margin from top and bottom
