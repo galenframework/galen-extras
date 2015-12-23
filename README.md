@@ -321,7 +321,7 @@ Scope: Any
 Syntax: `if none of %{objectPattern} are visible`
 
 ```
-    | if none of menu.item-* is visible
+    | if none of menu.item-* are visible
         main:
             below header 0px
 ```
