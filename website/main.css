@@ -1,5 +1,7 @@
 body {
     background: url('images/header-background.png');
+    margin: 0;
+    padding: 0;
 }
 .middle-wrapper {
     position: relative;
@@ -16,18 +18,28 @@ body {
     padding: 0;
     list-style: none;
 }
-#menu li {
-    display: inline-block;
-}
 #menu ul:after {
+    position: relative;
+    display: block;
+    content: " ";
     clear: both;
 }
+#menu li {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
 #menu li a {
+    display: block;
+    margin: 0;
+    padding: 3px 10px;
+    position: relative;
     min-width: 100px;
     font-size: 1.2em;
     color: white;
     padding: 20px;
-    display: inline-block;
 }
 #menu li a:hover {
     background: url('images/menu-highlight.png');
@@ -89,7 +101,7 @@ body {
         width: 100%;
     }
     #menu li {
-        width: 49%;
+        width: 50%;
     }
     #menu li a {
         width: 100%;
