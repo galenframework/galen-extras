@@ -1,4 +1,8 @@
 
+if (this.GEXTRAS_NO_MARGIN === undefined || this.GEXTRAS_NO_MARGIN === null) {
+    this.GEXTRAS_NO_MARGIN = "0px";
+}
+
 function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizontalMargin) {
     var allItems = findAll(itemPattern);
 
@@ -27,6 +31,17 @@ function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizo
         }
     }
 }
+
+/**
+ * This is a high-level spec for checking that elements are displayed in table layout
+ * e.g.
+ *
+ *      | menuItem-* are rendered in 2 column table layout
+ */
+rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout", function (objectName, parameters) {
+    _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), GEXTRAS_NO_MARGIN, GEXTRAS_NO_MARGIN);
+});
+
 
 /**
  * This is a high-level spec for checking that elements are displayed in table layout 
@@ -99,8 +114,6 @@ rule("if any of %{objectPattern} is visible", function (objectName, parameters) 
 
 rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin from %{sideAName} and %{sideBName}", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
-
-
     if (items.length > 0) {
         this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " " + parameters.sideAName ]);
         
@@ -115,3 +128,66 @@ rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin
 });
 
 
+
+rule("%{objectPattern} sides are vertically inside %{containerObject} with %{margin} margin", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+    if (items.length > 0) {
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " top" ]);
+        
+        for (var i = 1; i < items.length - 1; i++) {
+            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
+        }
+
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " bottom" ]);
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});
+
+
+rule("%{objectPattern} sides are vertically inside %{containerObject}", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+    if (items.length > 0) {
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " 0 to 1 px top" ]);
+        
+        for (var i = 1; i < items.length - 1; i++) {
+            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
+        }
+
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " 0 to 1 px bottom" ]);
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});
+
+
+rule("%{objectPattern} sides are horizontally inside %{containerObject} with %{margin} margin", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+    if (items.length > 0) {
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " left" ]);
+        
+        for (var i = 1; i < items.length - 1; i++) {
+            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
+        }
+
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " right" ]);
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});
+
+
+rule("%{objectPattern} sides are horizontally inside %{containerObject}", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+    if (items.length > 0) {
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " 0 to 1 px left" ]);
+        
+        for (var i = 1; i < items.length - 1; i++) {
+            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
+        }
+
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " 0 to 1 px right" ]);
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});

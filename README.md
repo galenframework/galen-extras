@@ -181,6 +181,31 @@ or
     | amount of visible menu.item-* should be > 4
 ```
 
+### Alignment of multiple elements with zero margin
+
+A very common situation when you have elements on the page aligned either vertically or horizontally. 
+
+###### Horizontal
+![](http://galenframework.github.io/galen-extras/images/sketch-horizontal-align.png) 
+
+Scope: Section
+
+Syntax: `%{objectPattern} are aligned horizontally next to each other`
+
+```
+    | menu.item-* are aligned horizontally next to each other
+```
+
+###### Vertical
+![](http://galenframework.github.io/galen-extras/images/sketch-vertical-align.png)
+
+Scope: Section
+
+Syntax: `%{objectPattern} are aligned vertically above each other`
+
+```
+    | menu.item-* are aligned vertically above each other
+```
 
 ### Alignment of multiple elements with equal distance
 
@@ -241,6 +266,16 @@ Syntax: `%{objectPattern} are aligned vertically above each other with %{margin}
 Allows to check that a set of elements is displayed in simple table. You can define the amount of columns for this table layout.
 ![](http://galenframework.github.io/galen-extras/images/sketch-table-layout.png)
 
+###### Table layout with zero margin between cols and rows
+
+Scope: Section
+
+Syntax: `%{itemPattern} are rendered in %{columns} column table layout`
+
+```
+    | menu.item-* are rendered in 2 column table layout
+```
+
 ###### Table layout with equal cols and rows margin
 
 Scope: Section
@@ -266,11 +301,34 @@ Syntax: `%{itemPattern} are rendered in %{columns} column table layout, with %{v
 
 The following statement checks that a set of elements is located inside specified container and that the first and last element have a specific margin from sides between the container sides.
 
+
+##### Horizontal zero margin
+
+Syntax: `%{objectPattern} sides are horizontally inside %{containerObject}
+
+![](http://galenframework.github.io/galen-extras/images/sketch-sides-horizontal.png)
+
+```
+    | menu.item-* sides are horizontally inside menu
+```
+
+##### Vertical zero margin
+
+Syntax: `%{objectPattern} sides are vertically inside %{containerObject}
+
+![](http://galenframework.github.io/galen-extras/images/sketch-sides-vertical.png)
+
+```
+    | menu.item-* sides are vertically inside menu
+```
+
+##### Custom margin for both sides
+
 Syntax: `%{objectPattern} sides are inside %{containerObject} with %{margin} margin from %{sideAName} and %{sideBName}`
 
 where `sideAName` and `sideBName` can take the following values: `left`, `right`, `top`, `bottom`
 
-###### Left and Right
+####### Left and Right
 
 ![](http://galenframework.github.io/galen-extras/images/sketch-sides-horizontal.png)
 
@@ -278,7 +336,7 @@ where `sideAName` and `sideBName` can take the following values: `left`, `right`
     | menu.item-* sides are inside menu with > 0px margin from left and right
 ```
 
-###### Top and Bottom
+####### Top and Bottom
 
 ![](http://galenframework.github.io/galen-extras/images/sketch-sides-vertical.png)
 

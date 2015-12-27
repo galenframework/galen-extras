@@ -19,8 +19,8 @@
 
 
 = Skeleton =
-    | &skeleton_elements sides are inside screen with 0px margin from top and bottom 
-    | &skeleton_elements are aligned vertically above each other with 0 to 1px margin
+    | &skeleton_elements sides are vertically inside screen
+    | &skeleton_elements are aligned vertically above each other
 
     = A page should be centered horizontally inside screen with 900px on desktop, but on mobile and tablet it should stretch to screen =
         | every &skeleton_element is centered horizontally inside screen
@@ -37,10 +37,10 @@
             | first &menu_item is inside menu 0px top left
 
         @on desktop, tablet
-            | &menu_items are aligned horizontally next to each other with 0 to 5px margin
+            | &menu_items are aligned horizontally next to each other
 
         @on mobile
-            | &menu_items are rendered in 2 column table layout, with 0px vertical and 0 to 4px horizontal margin
+            | &menu_items are rendered in 2 column table layout
 
 
 = Main Section = 

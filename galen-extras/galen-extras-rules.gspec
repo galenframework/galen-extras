@@ -1,4 +1,7 @@
 
+@if ${this.GEXTRAS_NO_MARGIN === undefined || this.GEXTRAS_NO_MARGIN === null}
+    @set GEXTRAS_NO_MARGIN  0px
+
 @script galen-extras-rules.js
 
 
@@ -85,6 +88,31 @@
     global:
         count ${visibilityType} "${objectPattern}" is ${amount}
 
+
+
+# Check elements horizontal alignment with zero distance
+# e.g.
+#
+#   | home_box_* are aligned horizontally next to each other
+#
+@rule %{objectPattern} are aligned horizontally next to each other
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned horizontally all ${nextItem}
+            left-of ${nextItem} ${GEXTRAS_NO_MARGIN}
+
+
+
+# Check elements vertical alignment with zero distance
+# e.g.
+#
+#   | home_box_* are aligned vertically above each other
+#
+@rule %{objectPattern} are aligned vertically above each other
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned vertically all ${nextItem}
+            above ${nextItem} ${GEXTRAS_NO_MARGIN}
 
 
 # Check elements horizontal alignment and equal distance between each other
