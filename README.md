@@ -304,7 +304,7 @@ The following statement checks that a set of elements is located inside specifie
 
 ##### Horizontal zero margin
 
-Syntax: `%{objectPattern} sides are horizontally inside %{containerObject}
+Syntax: `%{objectPattern} sides are horizontally inside %{containerObject}`
 
 ![](http://galenframework.github.io/galen-extras/images/sketch-sides-horizontal.png)
 
@@ -314,7 +314,7 @@ Syntax: `%{objectPattern} sides are horizontally inside %{containerObject}
 
 ##### Vertical zero margin
 
-Syntax: `%{objectPattern} sides are vertically inside %{containerObject}
+Syntax: `%{objectPattern} sides are vertically inside %{containerObject}`
 
 ![](http://galenframework.github.io/galen-extras/images/sketch-sides-vertical.png)
 
