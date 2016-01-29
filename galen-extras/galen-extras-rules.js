@@ -66,7 +66,7 @@ rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, wit
 });
 
 
-function _applyRuleBodyForAllElements(rule, objectPattern, appliesConditionCallback) {
+function _applyRuleBodyForAllElements(rule, parameters, appliesConditionCallback) {
     var allElements = findAll(parameters.objectPattern);
 
     if (allElements.length > 0) {
@@ -79,7 +79,7 @@ function _applyRuleBodyForAllElements(rule, objectPattern, appliesConditionCallb
     }
 }
 
-function _applyRuleBodyForSingleElement(rule, objectPattern, appliesConditionCallback) {
+function _applyRuleBodyForSingleElement(rule, parameters, appliesConditionCallback) {
     var allElements = findAll(parameters.objectPattern);
 
     if (allElements.length > 0) {
@@ -93,20 +93,20 @@ function _applyRuleBodyForSingleElement(rule, objectPattern, appliesConditionCal
 }
 
 rule("if all %{objectPattern} are visible", function (objectName, parameters) {
-    _applyRuleBodyForAllElements(this, parameters.objectPattern, function (element) {
+    _applyRuleBodyForAllElements(this, parameters, function (element) {
         return element.isVisible();
     });
 });
 
 
 rule("if none of %{objectPattern} are visible", function (objectName, parameters) {
-    _applyRuleBodyForAllElements(this, parameters.objectPattern, function (element) {
+    _applyRuleBodyForAllElements(this, parameters, function (element) {
         return ! element.isVisible();
     });
 });
 
 rule("if any of %{objectPattern} is visible", function (objectName, parameters) {
-    _applyRuleBodyForSingleElement(this, parameters.objectPattern, function (element) {
+    _applyRuleBodyForSingleElement(this, parameters, function (element) {
         return element.isVisible();
     });
 });

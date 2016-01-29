@@ -65,3 +65,7 @@
             | first &box is below greeting ~ 10px
             | last &box is above footer > 19px
 
+= If conditions =
+    | if all header, menu are visible
+        header:
+            above menu
