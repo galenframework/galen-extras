@@ -1,0 +1,7 @@
+@import init.gspec
+
+= Main =
+    |icon-* should have ~ 33% width/height ratio
+
+    icon-3:
+        |has 10% width/height ratio

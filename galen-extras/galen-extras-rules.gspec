@@ -94,9 +94,10 @@
 # Checks width/height ratio in percentage
 # e.g.
 #
-# | login_button, cancel_button should have 130% width/height ratio
+# login_button:
+#   |has 130% width/height ratio
 #
-@rule %{ratio}% width/height ratio
+@rule has %{ratio}% width/height ratio
     height ${ratio} % of ${objectName}/width
 
 

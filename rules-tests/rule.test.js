@@ -15,5 +15,21 @@ testSpec("squared.gspec", function (spec) {
             "width ~ 50px",
             "height ~ 50px"
         ]
+    })
+    .hasObjectWithSpecGroups("icon-2", {
+        "squared": ["width 100% of icon-2/height"]
+    })
+    .hasObjectWithSpecGroups("icon-3", {
+        "almost squared": ["width 90 to 110% of icon-3/height"]
+    });
+});
+
+testSpec("ratio.gspec", function (spec) {
+    assertSpec(spec).hasRuleSection("icon-* should have ~ 33% width/height ratio", {
+        "icon-1": ["height ~ 33 % of icon-1/width"],
+        "icon-2": ["height ~ 33 % of icon-2/width"]
+    })
+    .hasObjectWithSpecGroups("icon-3", {
+        "has 10% width/height ratio": ["height 10 % of icon-3/width"]
     });
 });
