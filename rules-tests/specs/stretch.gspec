@@ -1,0 +1,10 @@
+@import init.gspec
+
+
+= Main =
+    some_panel:
+        | stretches to main_container with 10px margin
+        | stretches to main_container
+
+    |login_panel, register_panel should stretch to main_container with 10px margin
+    |login_panel, register_panel should stretch to main_container

@@ -391,7 +391,7 @@
 #       | stretches to main_container with 10px margin
 #
 @rule stretches to %{parentObject} with %{margin} margin
-    inside  ${parentObject} ${margin} left right
+    inside ${parentObject} ${margin} left right
 
 
 # Check that element stretches horizontally to another element with minimal margin from sides
@@ -401,7 +401,7 @@
 #       | stretches to main_container
 #
 @rule stretches to %{parentObject}
-    inside  ${parentObject} ${minimal_margin} left right
+    inside ${parentObject} ${minimal_margin} left right
 
 
 # Check that multiple elements stretch horizontally to another element
@@ -411,8 +411,8 @@
 #   | login_panel, register_panel should stretch to main_container with 10px margin
 #
 @rule %{itemPattern} should stretch to %{parentObject} with %{margin} margin
-    ${itemPatterns}:
-        inside  ${parentObject} ${margin} left right
+    ${itemPattern}:
+        inside ${parentObject} ${margin} left right
 
 
 # Check that multiple elements stretch horizontally to another element with minimal margin from sides
@@ -420,9 +420,9 @@
 #
 #   | login_panel, register_panel should stretch to main_container
 #
-@rule %{itemPatterns} should stretch to %{parentObject}
-    ${itemPatterns}:
-        inside  ${parentObject} ${minimal_margin} left right
+@rule %{itemPattern} should stretch to %{parentObject}
+    ${itemPattern}:
+        inside ${parentObject} ${minimal_margin} left right
 
 
 
@@ -431,10 +431,10 @@
 # e.g.
 #
 #   login_panel:
-#       | stretches to main_container with 10px margin
+#       | stretches vertically to main_container with 10px margin
 #
 @rule stretches vertically to %{parentObject} with %{margin} margin
-    inside  ${parentObject} ${margin} top bottom
+    inside ${parentObject} ${margin} top bottom
 
 
 # Check that element stretches vertically to another element with minimal margin from sides
@@ -444,7 +444,7 @@
 #       | stretches vertically to main_container
 #
 @rule stretches vertically to %{parentObject}
-    inside  ${parentObject} ${minimal_margin} top bottom
+    inside ${parentObject} ${minimal_margin} top bottom
 
 
 # Check that multiple elements stretch vertically to another element
@@ -454,8 +454,8 @@
 #   | login_panel, register_panel should stretch vertically to main_container with 10px margin
 #
 @rule %{itemPattern} should stretch vertically to %{parentObject} with %{margin} margin
-    ${itemPatterns}:
-        inside  ${parentObject} ${margin} top bottom
+    ${itemPattern}:
+        inside ${parentObject} ${margin} top bottom
 
 
 # Check that multiple elements stretch vertically to another element with minimal margin from sides
@@ -463,9 +463,9 @@
 #
 #   | login_panel, register_panel should stretch vertically to main_container
 #
-@rule %{itemPatterns} should stretch vertically to %{parentObject}
-    ${itemPatterns}:
-        inside  ${parentObject} ${minimal_margin} top bottom
+@rule %{itemPattern} should stretch vertically to %{parentObject}
+    ${itemPattern}:
+        inside ${parentObject} ${minimal_margin} top bottom
 
 
 
