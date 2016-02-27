@@ -27,9 +27,23 @@ function assertArrayContains(title, arr, item) {
         }
     }
 
-    throw new Error("Does not contain: " + title + "\n    Expected item: " + item + "\n    Actual array:\n" 
-        + arr.map(function (arrItem) {return "          - " + arrItem;}).join("\n") + "\n"
+    throw new Error("Does not contain: " + title + "\n    Expected item: " + item + "\n    Actual array:\n" + arrayToPrettyError(arr)
     );
+}
+function arrayToPrettyError(arr) {
+    return arr.map(function (arrItem) {return "          - " + arrItem;}).join("\n") + "\n"
+}
+
+function assertArraysAreEqual(title, arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        throw new Error("Length doesn't match: " + title + "\n" 
+            + "   array #1:\n" + arrayToPrettyError(arr1)
+            + "   array #2:\n" + arrayToPrettyError(arr2));
+    } else {
+        for (var i = 0; i < arr1.length; i++) {
+            assertArrayContains(title, arr2, arr1[i]);
+        }
+    }
 }
 
 function SpecAssert(spec) {
@@ -63,6 +77,51 @@ SpecAssert.prototype.hasRuleSection = function (sectionName, sectionContents) {
     }
     return this;
 };
+SpecAssert.prototype.hasObjectWithSpecGroups = function (objectName, expectedSpecsGroups) {
+    var section = this.spec.getSections().get(0);
+    var objectSpecs = this.findObjectInSection(section, objectName);
+    if (objectSpecs === null) {
+        throw new Error("There is no object with name: " + objectName + "\n     The only available objects are:\n"
+            + arrayToPrettyError(this.extractAllObjectNames(section))
+        );
+    }
+    for (var groupName in expectedSpecsGroups) {
+        if (expectedSpecsGroups.hasOwnProperty(groupName)) {
+            var specGroup = this.findSpecGroupInObject(objectSpecs, groupName);
+            if (specGroup === null) {
+                throw new Error("Object " + objectName + " does not have spec group: " + groupName + "\n     The only available groups are:\n"
+                    + arrayToPrettyError(this.extractAllSpecGroupNames(objectSpecs))
+                );
+            }
+            var actualSpecs = this.convertSpecsToStringArray(specGroup.getSpecs());
+            assertArraysAreEqual("Actual specs should be equal to expected specs", actualSpecs, expectedSpecsGroups[groupName]);
+        }
+    }
+    return this;
+};
+SpecAssert.prototype.extractAllSpecGroupNames = function (objectSpecs) {
+    var specGroups = [];
+    if (objectSpecs.getSpecGroups() !== null) {
+        var iterator = objectSpecs.getSpecGroups().iterator();
+        while (iterator.hasNext()) {
+            var group = iterator.next();
+            specGroups.push("" + group.getName());
+        }
+    }
+    return specGroups;
+};
+SpecAssert.prototype.findSpecGroupInObject = function (objectSpecs, groupName) {
+    if (objectSpecs.getSpecGroups() !== null) {
+        var iterator = objectSpecs.getSpecGroups().iterator();
+        while (iterator.hasNext()) {
+            var group = iterator.next();
+            if (groupName === "" + group.getName()) {
+                return group;
+            }
+        }
+    }
+    return null;
+};
 SpecAssert.prototype.findObjectInSection = function (section, objectName) {
     var iterator = section.getObjects().iterator();
     while (iterator.hasNext()) {
@@ -72,6 +131,15 @@ SpecAssert.prototype.findObjectInSection = function (section, objectName) {
         }
     }
     return null;
+};
+SpecAssert.prototype.extractAllObjectNames = function (section) {
+    var objectNames = [];
+    var iterator = section.getObjects().iterator();
+    while (iterator.hasNext()) {
+        var objectSpecs = iterator.next();
+        objectNames.push("" + objectSpecs.getObjectName());
+    }
+    return objectNames;
 };
 SpecAssert.prototype.convertSpecsToStringArray = function (specsList) {
     var specs = [];

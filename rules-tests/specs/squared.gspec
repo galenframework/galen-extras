@@ -1,12 +1,9 @@
 @import init.gspec
 
-
-@objects
-    icon-1      #icon1
-    icon-2      #icon2
-
-
 = Main =
     |icon-* should be squared
 
     |icon-* should be almost squared
+
+    icon-1:
+        |squared with ~ 50px size

@@ -1,1 +1,8 @@
 @import ../../galen-extras/galen-extras-rules.gspec
+
+@objects
+    icon-1      #icon1
+    icon-2      #icon2
+
+    menu_icon   #menu_icon
+

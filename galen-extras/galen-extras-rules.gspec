@@ -38,9 +38,9 @@
 # e.g.
 #
 #   icon:
-#       | should be squared with ~ 100px size
+#       | squared with ~ 100px size
 #
-@rule should be squared with %{size} size
+@rule squared with %{size} size
     width ${size}
     height ${size}
 
