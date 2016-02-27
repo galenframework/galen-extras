@@ -61,6 +61,7 @@ SpecAssert.prototype.hasRuleSection = function (sectionName, sectionContents) {
             }
         }
     }
+    return this;
 };
 SpecAssert.prototype.findObjectInSection = function (section, objectName) {
     var iterator = section.getObjects().iterator();

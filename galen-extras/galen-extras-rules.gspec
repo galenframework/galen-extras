@@ -30,7 +30,7 @@
 @rule %{objectPattern} should be almost squared
     @forEach [${objectPattern}] as item
         ${item}:
-            width 90 to 110% of ${objectName}/height
+            width 90 to 110% of ${item}/height
 
 
 
