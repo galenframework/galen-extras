@@ -1,0 +1,24 @@
+@import init.gspec
+
+@script
+    mockFunction("first")
+        .thenReturn({name: "box-1"})
+        .thenReturn({name: "box-1"});
+
+    mockFunction("last")
+        .thenReturn({name: "box-3"})
+        .thenReturn({name: "box-3"});
+
+= Main =
+    | every icon-* is inside menu 0px top bottom and has width 100px
+
+    | every icon-* is inside menu 0px left
+
+    | first box-* has width 134px
+    | last box-* is visible
+
+    | first box-*:
+        centered vertically inside screen
+
+    | last box-*:
+        centered horizontally inside screen

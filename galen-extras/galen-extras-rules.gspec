@@ -262,11 +262,10 @@
 #
 #   | every menu.item-* has width and is inside menu 0px top bottom
 #
-@rule %{subj: every|a|an}  %{objectPattern} %{verb: is|has} %{spec1} and %{verb2: is|has} %{spec2}
-    @forEach [${objectPattern}] as item
-        ${item}:
-            ${spec1}
-            ${spec2}
+@rule %{subj: every|a|an} %{objectPattern} %{verb: is|has} %{spec1} and %{verb2: is|has} %{spec2}
+    ${objectPattern}:
+        ${spec1}
+        ${spec2}
 
 
 # Apply spec to all elements in a single line
