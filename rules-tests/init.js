@@ -1,12 +1,12 @@
 
 
 
-function testSpec(specPath, callback) {
-    test("Check spec " + specPath, function () {
+function testSpec(specPath, tags, callback) {
+    test("Check spec " + specPath + " [" + tags.join(", ") + "]", function () {
         var pageSpec = parsePageSpec({
             driver: null,
             spec: "specs/" + specPath,
-            tags: null
+            tags: tags
         });
 
         callback.call(this, pageSpec);

@@ -1,0 +1,5 @@
+@import init.gspec
+
+
+= Main =
+    |login_button, cancel_button should be visible on desktop, tablet but absent on mobile

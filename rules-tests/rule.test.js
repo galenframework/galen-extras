@@ -1,7 +1,7 @@
 load("init.js");
 
 
-testSpec("squared.gspec", function (spec) {
+testSpec("squared.gspec", [], function (spec) {
     assertSpec(spec).hasRuleSection("icon-* should be squared", {
         "icon-1": ["width 100% of icon-1/height"],
         "icon-2": ["width 100% of icon-2/height"]
@@ -25,7 +25,7 @@ testSpec("squared.gspec", function (spec) {
 });
 
 
-testSpec("ratio.gspec", function (spec) {
+testSpec("ratio.gspec", [], function (spec) {
     assertSpec(spec).hasRuleSection("icon-* should have ~ 33% width/height ratio", {
         "icon-1": ["height ~ 33 % of icon-1/width"],
         "icon-2": ["height ~ 33 % of icon-2/width"]
@@ -36,7 +36,7 @@ testSpec("ratio.gspec", function (spec) {
 });
 
 
-testSpec("amount.gspec", function (spec) {
+testSpec("amount.gspec", [], function (spec) {
     assertSpec(spec)
     .hasRuleSection("amount of visible icon-* should be 2", {
         "global": ["count visible \"icon-*\" is 2"],
@@ -45,5 +45,30 @@ testSpec("amount.gspec", function (spec) {
         "global": ["count absent \"logo-*\" is < 2"],
     });
 });
+
+
+
+testSpec("tags.gspec", ["desktop"], function (spec) {
+    assertSpec(spec)
+    .hasRuleSection("login_button, cancel_button should be visible on desktop, tablet but absent on mobile", {
+        "login_button": ["visible"],
+        "cancel_button": ["visible"]
+    })
+});
+testSpec("tags.gspec", ["tablet"], function (spec) {
+    assertSpec(spec)
+    .hasRuleSection("login_button, cancel_button should be visible on desktop, tablet but absent on mobile", {
+        "login_button": ["visible"],
+        "cancel_button": ["visible"]
+    })
+});
+testSpec("tags.gspec", ["mobile"], function (spec) {
+    assertSpec(spec)
+    .hasRuleSection("login_button, cancel_button should be visible on desktop, tablet but absent on mobile", {
+        "login_button": ["absent"],
+        "cancel_button": ["absent"]
+    })
+});
+
 
 

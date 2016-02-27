@@ -1,6 +1,6 @@
 load("init.js");
 
-testSpec("alignment.gspec", function (spec) {
+testSpec("alignment.gspec", [], function (spec) {
     assertSpec(spec)
     .hasRuleSection("box-* are aligned horizontally next to each other", {
         "box-1": [
