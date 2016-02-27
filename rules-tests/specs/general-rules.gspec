@@ -1,0 +1,14 @@
+@import init.gspec
+
+
+= Main =
+    button:
+        |is more or less readable
+
+    |icon-* should be more or less readable
+
+
+    login_button:
+        |is tapable
+
+    |cancel_button,register_button should be tapable
