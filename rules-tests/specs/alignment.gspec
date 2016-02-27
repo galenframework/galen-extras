@@ -23,3 +23,7 @@
 
     |box-* are aligned horizontally next to each other with equal distance
     |box-* are aligned vertically above each other with equal distance
+
+
+    |box-* are placed above each other with 123px margin
+    |box-* are placed next to each other with 21px margin

@@ -214,6 +214,19 @@
 
 
 
+# Check that elements are places horizontally above each other 
+# without checking their alignment by sides
+# e.g.
+#
+#   | menu.item-* are placed next to each other with 10px margin
+#
+@rule %{itemPattern} are placed next to each other with %{margin} margin
+    @forEach [${itemPattern}] as item, next as nextItem
+        ${item}:
+            left-of ${nextItem} ${margin}
+
+
+
 
 # Check that elements appear and hide on different tags
 # e.g.

@@ -62,5 +62,21 @@ testSpec("alignment.gspec", function (spec) {
             "above box-3 9 to 11 px"
         ]
     })
+    .hasRuleSection("box-* are placed above each other with 123px margin", {
+        "box-1": [
+            "above box-2 123px"
+        ],
+        "box-2": [
+            "above box-3 123px"
+        ]
+    })
+    .hasRuleSection("box-* are placed next to each other with 21px margin", {
+        "box-1": [
+            "left-of box-2 21px"
+        ],
+        "box-2": [
+            "left-of box-3 21px"
+        ]
+    })
 });
 
