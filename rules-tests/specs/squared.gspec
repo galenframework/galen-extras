@@ -1,0 +1,10 @@
+@import init.gspec
+
+
+@objects
+    icon-1      #icon1
+    icon-2      #icon2
+
+
+= Main =
+    |icon-* should be squared

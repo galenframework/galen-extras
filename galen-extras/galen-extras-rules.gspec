@@ -17,7 +17,7 @@
 @rule %{objectPattern} should be squared
     @forEach [${objectPattern}] as item
         ${item}:
-            width 100% of ${objectName}/height
+            width 100% of ${item}/height
 
 
 
@@ -341,9 +341,9 @@
 # Check that multiple elements have non null width and height
 # e.g.
 #
-#    | every menu.item-* is more or less readable
+#    | menu.item-* should be more or less readable
 #
-@rule %{word: every|a|an} %{itemPatterns} is more or less readable
+@rule %{itemPatterns} should be more or less readable
     ${itemPatterns}:
         width > 30px
         height > 10px
@@ -362,7 +362,7 @@
 #
 #   | every menu.item-* is tapable
 #
-@rule %{word: every|a|an} %{itemPatterns} is tapable
+@rule %{itemPatterns} should be tapable
     ${itemPatterns}:
         width > 50px
         height > 30px
@@ -408,6 +408,51 @@
 @rule %{itemPatterns} should stretch to %{parentObject}
     ${itemPatterns}:
         inside  ${parentObject} ${minimal_margin} left right
+
+
+
+# Check that element stretches vertically to another element
+# and that it has some specific margin from sides
+# e.g.
+#
+#   login_panel:
+#       | stretches to main_container with 10px margin
+#
+@rule stretches vertically to %{parentObject} with %{margin} margin
+    inside  ${parentObject} ${margin} top bottom
+
+
+# Check that element stretches vertically to another element with minimal margin from sides
+# e.g.
+#
+#   login_panel:
+#       | stretches vertically to main_container
+#
+@rule stretches vertically to %{parentObject}
+    inside  ${parentObject} ${minimal_margin} top bottom
+
+
+# Check that multiple elements stretch vertically to another element
+# and that it has some specific margin from sides
+# e.g.
+#
+#   | login_panel, register_panel should stretch vertically to main_container with 10px margin
+#
+@rule %{itemPattern} should stretch vertically to %{parentObject} with %{margin} margin
+    ${itemPatterns}:
+        inside  ${parentObject} ${margin} top bottom
+
+
+# Check that multiple elements stretch vertically to another element with minimal margin from sides
+# e.g.
+#
+#   | login_panel, register_panel should stretch vertically to main_container
+#
+@rule %{itemPatterns} should stretch vertically to %{parentObject}
+    ${itemPatterns}:
+        inside  ${parentObject} ${minimal_margin} top bottom
+
+
 
 
 # Check that element is located inside another element on specific side with specific margin
