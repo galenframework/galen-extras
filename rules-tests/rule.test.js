@@ -33,3 +33,13 @@ testSpec("ratio.gspec", function (spec) {
         "has 10% width/height ratio": ["height 10 % of icon-3/width"]
     });
 });
+
+testSpec("amount.gspec", function (spec) {
+    assertSpec(spec)
+    .hasRuleSection("amount of visible icon-* should be 2", {
+        "global": ["count visible \"icon-*\" is 2"],
+    })
+    .hasRuleSection("amount of absent logo-* should be < 2", {
+        "global": ["count absent \"logo-*\" is < 2"],
+    });
+});

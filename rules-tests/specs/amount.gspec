@@ -1,0 +1,5 @@
+@import init.gspec
+
+= Main =
+    |amount of visible icon-* should be 2
+    |amount of absent logo-* should be < 2
