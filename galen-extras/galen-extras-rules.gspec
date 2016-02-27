@@ -3,7 +3,7 @@
     minimal_margin                  -1 to 1px
 
 @if ${this.GEXTRAS_NO_MARGIN === undefined || this.GEXTRAS_NO_MARGIN === null}
-    @set GEXTRAS_NO_MARGIN  0px
+    @set GEXTRAS_NO_MARGIN  -1 to 1px
 
 
 @script galen-extras-rules.js

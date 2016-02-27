@@ -1,8 +1,13 @@
 @import ../../galen-extras/galen-extras-rules.gspec
+@script mock.gspec.js
 
 @objects
     icon-1      #icon1
     icon-2      #icon2
 
     menu_icon   #menu_icon
+
+    box-1       #box1
+    box-2       #box2
+    box-3       #box3
 

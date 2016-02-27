@@ -1,0 +1,19 @@
+@import init.gspec
+
+# Mocking js api calls
+@script
+    mockFunction("findAll")
+    .thenReturn([{
+        right: function () {return 100}
+    }, {
+        left: function () {return 105}
+    }]);
+= Main =
+    |box-* are aligned horizontally next to each other
+    |box-* are aligned vertically above each other
+
+    |box-* are aligned horizontally next to each other with 11px margin
+    |box-* are aligned vertically above each other with 12px margin
+
+
+    |box-* are aligned horizontally next to each other with equal distance
