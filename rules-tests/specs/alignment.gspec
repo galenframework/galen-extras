@@ -3,11 +3,16 @@
 # Mocking js api calls
 @script
     mockFunction("findAll")
-    .thenReturn([{
-        right: function () {return 100}
-    }, {
-        left: function () {return 105}
-    }]);
+        .thenReturn([{
+            right: function () {return 100}
+        }, {
+            left: function () {return 105}
+        }])
+        .thenReturn([{
+            bottom: function () {return 100}
+        }, {
+            top: function () {return 110}
+        }]);
 = Main =
     |box-* are aligned horizontally next to each other
     |box-* are aligned vertically above each other
@@ -17,3 +22,4 @@
 
 
     |box-* are aligned horizontally next to each other with equal distance
+    |box-* are aligned vertically above each other with equal distance

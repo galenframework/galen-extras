@@ -52,5 +52,15 @@ testSpec("alignment.gspec", function (spec) {
             "left-of box-3 4 to 6 px"
         ]
     })
+    .hasRuleSection("box-* are aligned vertically above each other with equal distance", {
+        "box-1": [
+            "aligned vertically all box-2",
+            "above box-2 9 to 11 px"
+        ],
+        "box-2": [
+            "aligned vertically all box-3",
+            "above box-3 9 to 11 px"
+        ]
+    })
 });
 

@@ -167,10 +167,12 @@
 @rule %{objectPattern} are aligned vertically above each other with equal distance
     @if ${count(objectPattern) > 1}
         @set _distance_ ${var all = findAll(objectPattern); Math.abs(all[1].top() - all[0].bottom())}
+        @set _distance_a ${parseInt(_distance_) - 1}
+        @set _distance_b ${parseInt(_distance_) + 1}
         @forEach [${objectPattern}] as item, next as nextItem
             ${item}:
                 aligned vertically all ${nextItem}
-                above ${nextItem} ${_distance_} px
+                above ${nextItem} ${_distance_a} to ${_distance_b} px
 
 
 
