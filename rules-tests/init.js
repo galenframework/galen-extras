@@ -49,6 +49,14 @@ function assertArraysAreEqual(title, arr1, arr2) {
 function SpecAssert(spec) {
     this.spec = spec;
 }
+SpecAssert.prototype.doesNotHaveRuleSection = function (sectionName, sectionContents) {
+    var section = this.findSection(sectionName);
+    if (section !== null) {
+        throw new Error("rule section should not be there but it is: " + sectionName);
+    }
+
+    return this;
+};
 SpecAssert.prototype.hasRuleSection = function (sectionName, sectionContents) {
     var section = this.findSection(sectionName);
     if (section === null) {

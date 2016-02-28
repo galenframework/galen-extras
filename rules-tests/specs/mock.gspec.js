@@ -7,7 +7,7 @@ MockedFunction.prototype.invoke = function () {
         var value = this.expectedReturns.shift();
         return value;
     } else {
-        throw new Error("Unexpected mock invokation for function: " + funcName);
+        throw new Error("Unexpected mock invokation for function: " + this.funcName);
     }
 };
 MockedFunction.prototype.thenReturn = function (returnValue) {
@@ -29,4 +29,8 @@ this.mockFunction = function (funcName) {
         return mock.invoke();
     };
     return mock;
+};
+
+this.mockReturn = function (returnValue) {
+    return function () {return returnValue;};
 };

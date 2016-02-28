@@ -70,7 +70,7 @@ function _applyRuleBodyForAllElements(rule, parameters, appliesConditionCallback
     var allElements = findAll(parameters.objectPattern);
 
     if (allElements.length > 0) {
-        for (var i = 0; i < allElements.length - 1; i += 1) {
+        for (var i = 0; i < allElements.length; i += 1) {
             if (!appliesConditionCallback(allElements[i])) {
                 return;
             }
@@ -83,7 +83,7 @@ function _applyRuleBodyForSingleElement(rule, parameters, appliesConditionCallba
     var allElements = findAll(parameters.objectPattern);
 
     if (allElements.length > 0) {
-        for (var i = 0; i < allElements.length - 1; i += 1) {
+        for (var i = 0; i < allElements.length; i += 1) {
             if (appliesConditionCallback(allElements[i])) {
                 rule.doRuleBody();
                 return;

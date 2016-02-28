@@ -1,0 +1,35 @@
+@import init.gspec
+
+@script conditional-rules.mock.js
+
+
+= Main =
+    | if all icon-* are visible
+        screen:
+            text is "qwe1"
+
+    | if all box-* are visible
+        screen:
+            text is "qwe2"
+
+
+
+
+    | if none of icon-* are visible
+        screen:
+            text is "qwe3"
+
+    | if none of box-* are visible
+        screen:
+            text is "qwe4"
+
+
+
+
+    | if any of icon-* is visible
+        screen:
+            text is "qwe5"
+
+    | if any of box-* is visible
+        screen:
+            text is "qwe6"
