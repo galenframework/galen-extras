@@ -1,0 +1,13 @@
+@import init.gspec
+@script sides.mock.js
+
+= Main =
+    | box-* sides are inside main_container with 5px margin from top and bottom
+
+    | box-* sides are vertically inside main_container with 4px margin
+
+    | box-* sides are vertically inside main_container
+
+    | box-* sides are horizontally inside main_container with 3px margin
+
+    | box-* sides are horizontally inside main_container

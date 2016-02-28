@@ -128,6 +128,20 @@ rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin
 });
 
 
+rule("%{objectPattern} sides are vertically inside %{containerObject}", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+    if (items.length > 0) {
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " -1 to 1 px top" ]);
+        
+        for (var i = 1; i < items.length - 1; i++) {
+            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
+        }
+
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " -1 to 1 px bottom" ]);
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});
 
 rule("%{objectPattern} sides are vertically inside %{containerObject} with %{margin} margin", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
@@ -145,16 +159,16 @@ rule("%{objectPattern} sides are vertically inside %{containerObject} with %{mar
 });
 
 
-rule("%{objectPattern} sides are vertically inside %{containerObject}", function (objectName, parameters) {
+rule("%{objectPattern} sides are horizontally inside %{containerObject}", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     if (items.length > 0) {
-        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " 0 to 1 px top" ]);
+        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " -1 to 1 px left" ]);
         
         for (var i = 1; i < items.length - 1; i++) {
             this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
         }
 
-        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " 0 to 1 px bottom" ]);
+        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " -1 to 1 px right" ]);
     } else {
         throw new Error("Couldn't find any items matching " + parameters.objectPattern);
     }
@@ -171,22 +185,6 @@ rule("%{objectPattern} sides are horizontally inside %{containerObject} with %{m
         }
 
         this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " " + parameters.margin + " right" ]);
-    } else {
-        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
-    }
-});
-
-
-rule("%{objectPattern} sides are horizontally inside %{containerObject}", function (objectName, parameters) {
-    var items = findAll(parameters.objectPattern);
-    if (items.length > 0) {
-        this.addObjectSpecs(items[0].name, [ "inside " + parameters.containerObject + " 0 to 1 px left" ]);
-        
-        for (var i = 1; i < items.length - 1; i++) {
-            this.addObjectSpecs(items[i].name, [ "inside " + parameters.containerObject ]);
-        }
-
-        this.addObjectSpecs(items[items.length - 1].name, [ "inside " + parameters.containerObject + " 0 to 1 px right" ]);
     } else {
         throw new Error("Couldn't find any items matching " + parameters.objectPattern);
     }
