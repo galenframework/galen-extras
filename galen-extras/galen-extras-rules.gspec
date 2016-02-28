@@ -1,7 +1,4 @@
 
-@set
-    minimal_margin                  -1 to 1px
-
 @if ${this.GEXTRAS_NO_MARGIN === undefined || this.GEXTRAS_NO_MARGIN === null}
     @set GEXTRAS_NO_MARGIN  -1 to 1px
 
@@ -253,21 +250,6 @@
             component ${componentPath}
 
 
-# Apply two specs to all elements in a single line
-# e.g.
-#
-#   | every menu.item-* is inside menu 0px top bottom and has width 100px
-#
-# or
-#
-#   | every menu.item-* has width and is inside menu 0px top bottom
-#
-@rule %{subj: every|a|an} %{objectPattern} %{verb: is|has} %{spec1} and %{verb2: is|has} %{spec2}
-    ${objectPattern}:
-        ${spec1}
-        ${spec2}
-
-
 # Apply spec to all elements in a single line
 # e.g.
 #
@@ -281,6 +263,21 @@
     @forEach [${objectPattern}] as item
         ${item}:
             ${spec}
+
+
+# Apply two specs to all elements in a single line
+# e.g.
+#
+#   | every menu.item-* is inside menu 0px top bottom and has width 100px
+#
+# or
+#
+#   | every menu.item-* has width and is inside menu 0px top bottom
+#
+@rule %{subj: every|a|an} %{objectPattern} %{verb: is|has} %{spec1} and %{verb2: is|has} %{spec2}
+    ${objectPattern}:
+        ${spec1}
+        ${spec2}
 
 
 
@@ -383,6 +380,17 @@
         height > 30px
 
 
+# Check that element stretches horizontally to another element with minimal margin from sides
+# e.g.
+#
+#   login_panel:
+#       | stretches to main_container
+#
+@rule stretches to %{parentObject}
+    inside ${parentObject} ${GEXTRAS_NO_MARGIN} left right
+
+
+
 # Check that element stretches horizontally to another element
 # and that it has some specific margin from sides
 # e.g.
@@ -394,14 +402,15 @@
     inside ${parentObject} ${margin} left right
 
 
-# Check that element stretches horizontally to another element with minimal margin from sides
+# Check that multiple elements stretch horizontally to another element with minimal margin from sides
 # e.g.
 #
-#   login_panel:
-#       | stretches to main_container
+#   | login_panel, register_panel should stretch to main_container
 #
-@rule stretches to %{parentObject}
-    inside ${parentObject} ${minimal_margin} left right
+@rule %{itemPattern} should stretch to %{parentObject}
+    ${itemPattern}:
+        inside ${parentObject} ${GEXTRAS_NO_MARGIN} left right
+
 
 
 # Check that multiple elements stretch horizontally to another element
@@ -415,14 +424,15 @@
         inside ${parentObject} ${margin} left right
 
 
-# Check that multiple elements stretch horizontally to another element with minimal margin from sides
+
+# Check that element stretches vertically to another element with minimal margin from sides
 # e.g.
 #
-#   | login_panel, register_panel should stretch to main_container
+#   login_panel:
+#       | stretches vertically to main_container
 #
-@rule %{itemPattern} should stretch to %{parentObject}
-    ${itemPattern}:
-        inside ${parentObject} ${minimal_margin} left right
+@rule stretches vertically to %{parentObject}
+    inside ${parentObject} ${GEXTRAS_NO_MARGIN} top bottom
 
 
 
@@ -437,14 +447,16 @@
     inside ${parentObject} ${margin} top bottom
 
 
-# Check that element stretches vertically to another element with minimal margin from sides
+
+# Check that multiple elements stretch vertically to another element with minimal margin from sides
 # e.g.
 #
-#   login_panel:
-#       | stretches vertically to main_container
+#   | login_panel, register_panel should stretch vertically to main_container
 #
-@rule stretches vertically to %{parentObject}
-    inside ${parentObject} ${minimal_margin} top bottom
+@rule %{itemPattern} should stretch vertically to %{parentObject}
+    ${itemPattern}:
+        inside ${parentObject} ${GEXTRAS_NO_MARGIN} top bottom
+
 
 
 # Check that multiple elements stretch vertically to another element
@@ -458,15 +470,14 @@
         inside ${parentObject} ${margin} top bottom
 
 
-# Check that multiple elements stretch vertically to another element with minimal margin from sides
+# Check that element is located inside another element on specific side with minimal margin
 # e.g.
 #
-#   | login_panel, register_panel should stretch vertically to main_container
+#   login_button:
+#       | located at the top inside main_container
 #
-@rule %{itemPattern} should stretch vertically to %{parentObject}
-    ${itemPattern}:
-        inside ${parentObject} ${minimal_margin} top bottom
-
+@rule located at the %{side} inside %{parentObject}
+    inside ${parentObject} ${GEXTRAS_NO_MARGIN} ${side}
 
 
 
@@ -480,14 +491,15 @@
     inside ${parentObject} ${margin} ${side}
 
 
-# Check that element is located inside another element on specific side with minimal margin
+
+# Check that multiple elements are located inside another element on specific side with minimal margin
 # e.g.
 #
-#   login_button:
-#       | located at the top inside main_container
+#   | menu.item-* should be located at the right inside menu with ~10px margin
 #
-@rule located at the %{side} inside %{parentObject}
-    inside ${parentObject} -1 to 1px ${side}
+@rule %{objectName} should be located at the %{side} inside %{parentObject}
+    ${objectName}:
+        inside ${parentObject} ${GEXTRAS_NO_MARGIN} ${side}
 
 
 # Check that multiple elements are located inside another element on specific side with specific margin
@@ -506,11 +518,26 @@
 # e.g.
 #
 #   login_panel:
-#       | located on left side of main_container and takes 70 % of its width
+#       | located on the left side of main_container and takes 70 % of its width
 #
-@rule located on %{side} side of %{parentItem} and takes %{percentWidth} % of its width
-    inside ${parentItem} ${minimal_margin} ${side}
-    width ${percentWidth} % of ${parentItem}/width
+@rule located on the %{side} side of %{parentItem} and takes %{percentWidth}% of its %{sizeSide: width|height}
+    inside ${parentItem} ${GEXTRAS_NO_MARGIN} ${side}
+    width ${percentWidth} % of ${parentItem}/${sizeSide}
+
+
+
+# Check that element is located on specific side inside another element
+# and that it takes some specific percentage of its width
+# e.g.
+#
+#   login_panel:
+#       | located on the left side of main_container with ~10px margin and takes 70 % of its width
+#
+@rule located on the %{side} side of %{parentItem} with %{margin} margin and takes %{percentWidth}% of its %{sizeSide: width|height}
+    inside ${parentItem} ${margin} ${side}
+    width ${percentWidth} % of ${parentItem}/${sizeSide}
+
+
 
 
 # Check that multiple elements are located on specific side inside another element
@@ -519,10 +546,25 @@
 #
 #   | message-* should be located on left side of main_container and take 70 % of its width
 #
-@rule %{itemPattern} should be located on %{side} side of %{parentItem} and take %{percentWidth} % of its width
+@rule %{itemPattern} should be located on the %{side} side of %{parentItem} and take %{percentWidth}% of its %{sizeSide: width|height}
     ${itemPattern}:
-        inside ${parentItem} ${minimal_margin} ${side}
-        width ${percentWidth} % of ${parentItem}/width
+        inside ${parentItem} ${GEXTRAS_NO_MARGIN} ${side}
+        width ${percentWidth} % of ${parentItem}/${sizeSide}
+
+
+
+# Check that multiple elements are located on specific side inside another element
+# and that they take some specific percentage of its width
+# e.g.
+#
+#   | message-* should be located on left side of main_container and take 70 % of its width
+#
+@rule %{itemPattern} should be located on the %{side} side of %{parentItem} with %{margin} margin and take %{percentWidth}% of its %{sizeSide: width|height}
+    ${itemPattern}:
+        inside ${parentItem} ${margin} ${side}
+        width ${percentWidth} % of ${parentItem}/${sizeSide}
+
+
 
 
 # Apply some validations to the element only on a specific tag, and at the same time check that is absent on another tags

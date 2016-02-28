@@ -1,0 +1,28 @@
+@import init.gspec
+
+= Main =
+    login_panel:
+        | located at the top inside main_container with 10px margin
+        | located at the right bottom inside main_container with 11px margin
+
+    register_panel:
+        | located at the top left inside main_container
+
+    |comments_section should be located at the right inside main_container with ~10px margin
+    |ads_section should be located at the top left inside main_container
+
+
+    ads_panel:
+        |located on the left side of main_container and takes 70 % of its width
+        |located on the top side of main_container and takes 50 % of its height
+
+    |login_panel should be located on the left side of main_container and take 70 % of its width
+    |register_panel should be located on the top side of main_container and take 50 % of its height
+
+
+    user_panel:
+        |located on the left side of main_container with ~10px margin and takes 70 % of its width
+        |located on the top side of main_container with 10 to 12px margin and takes 50 % of its height
+
+    |login_panel should be located on the left side of main_container with 10px margin and take 70 % of its width
+    |register_panel should be located on the top side of main_container with < 123px margin and take 50 % of its height
