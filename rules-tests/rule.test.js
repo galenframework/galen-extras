@@ -54,6 +54,9 @@ testSpec("tags.gspec", ["desktop"], function (spec) {
         "login_button": ["visible"],
         "cancel_button": ["visible"]
     })
+    .hasRuleSection("login_button should be absent on mobile but on desktop, tablet:", {
+        "login_button": ["inside screen 0px top left"]
+    })
 });
 testSpec("tags.gspec", ["tablet"], function (spec) {
     assertSpec(spec)
@@ -61,12 +64,18 @@ testSpec("tags.gspec", ["tablet"], function (spec) {
         "login_button": ["visible"],
         "cancel_button": ["visible"]
     })
+    .hasRuleSection("login_button should be absent on mobile but on desktop, tablet:", {
+        "login_button": ["inside screen 0px top left"]
+    })
 });
 testSpec("tags.gspec", ["mobile"], function (spec) {
     assertSpec(spec)
     .hasRuleSection("login_button, cancel_button should be visible on desktop, tablet but absent on mobile", {
         "login_button": ["absent"],
         "cancel_button": ["absent"]
+    })
+    .hasRuleSection("login_button should be absent on mobile but on desktop, tablet:", {
+        "login_button": ["absent"]
     })
 });
 

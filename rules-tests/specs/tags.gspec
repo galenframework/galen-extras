@@ -3,3 +3,6 @@
 
 = Main =
     |login_button, cancel_button should be visible on desktop, tablet but absent on mobile
+
+    |login_button should be absent on mobile but on desktop, tablet:
+        inside screen 0px top left
