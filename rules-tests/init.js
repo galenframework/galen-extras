@@ -59,8 +59,10 @@ SpecAssert.prototype.hasRuleSection = function (sectionName, sectionContents) {
             }).join("\n"));
     }
 
+    var validatedObjects = 0;
     for (var objectName in sectionContents) {
         if (sectionContents.hasOwnProperty(objectName)) {
+            validatedObjects += 1;
             var obj = this.findObjectInSection(section, objectName);
             if (obj === null) {
                 throw new Error("There is no object " + objectName + " in section: " + sectionName);
@@ -69,12 +71,14 @@ SpecAssert.prototype.hasRuleSection = function (sectionName, sectionContents) {
             var expectedSpecs = sectionContents[objectName];
             var realSpecs = this.convertSpecsToStringArray(obj.getSpecs());
 
-            assertEquals("Amount of expectedSpecs and realSpecs", expectedSpecs.length, realSpecs.length);
+            assertEquals("Amount of expectedSpecs and realSpecs in object " + objectName, expectedSpecs.length, realSpecs.length);
             for (var i = 0; i < expectedSpecs.length; i++) {
                 assertArrayContains("realSpecs should contain: ", realSpecs, expectedSpecs[i]);
             }
         }
     }
+
+    assertEquals("Amount of validated objects should match with actual object is spec", validatedObjects, section.getObjects().size());
     return this;
 };
 SpecAssert.prototype.hasObjectWithSpecGroups = function (objectName, expectedSpecsGroups) {

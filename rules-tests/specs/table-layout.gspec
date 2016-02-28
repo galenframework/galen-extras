@@ -1,0 +1,20 @@
+@import init.gspec
+
+@objects
+    brick-1     #brick-1
+    brick-2     #brick-2
+    brick-3     #brick-3
+    brick-4     #brick-4
+    brick-5     #brick-5
+    brick-6     #brick-6
+
+@script table-layout.mock.js
+
+= Main =
+   | brick-* are rendered in 2 column table layout
+   | brick-* are rendered in 2 column table layout, with 14px margin
+   | brick-* are rendered in 2 column table layout, with 14px vertical and 12px horizontal margin
+
+
+
+
