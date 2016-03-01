@@ -2,6 +2,8 @@
 @if ${this.GEXTRAS_NO_MARGIN === undefined || this.GEXTRAS_NO_MARGIN === null}
     @set GEXTRAS_NO_MARGIN  -1 to 1px
 
+@if ${this.GEXTRAS_ === undefined || this.GEXTRAS_ALIGN_ERROR_RATE === null}
+    @set GEXTRAS_ALIGN_ERROR_RATE  1px
 
 @script galen-extras-rules.js
 
@@ -122,7 +124,7 @@
 @rule %{objectPattern} are aligned horizontally next to each other
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
-            aligned horizontally all ${nextItem}
+            aligned horizontally all ${nextItem} ${GEXTRAS_ALIGN_ERROR_RATE}
             left-of ${nextItem} ${GEXTRAS_NO_MARGIN}
 
 
@@ -135,7 +137,7 @@
 @rule %{objectPattern} are aligned vertically above each other
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
-            aligned vertically all ${nextItem}
+            aligned vertically all ${nextItem} ${GEXTRAS_ALIGN_ERROR_RATE}
             above ${nextItem} ${GEXTRAS_NO_MARGIN}
 
 
@@ -151,7 +153,7 @@
         @set _distance_b ${parseInt(_distance_) + 1}
         @forEach [${objectPattern}] as item, next as nextItem
             ${item}:
-                aligned horizontally all ${nextItem}
+                aligned horizontally all ${nextItem} ${GEXTRAS_ALIGN_ERROR_RATE}
                 left-of ${nextItem} ${_distance_a} to ${_distance_b} px
 
 
@@ -168,7 +170,7 @@
         @set _distance_b ${parseInt(_distance_) + 1}
         @forEach [${objectPattern}] as item, next as nextItem
             ${item}:
-                aligned vertically all ${nextItem}
+                aligned vertically all ${nextItem} ${GEXTRAS_ALIGN_ERROR_RATE}
                 above ${nextItem} ${_distance_a} to ${_distance_b} px
 
 
@@ -181,7 +183,7 @@
 @rule %{objectPattern} are aligned horizontally next to each other with %{margin} margin
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
-            aligned horizontally all ${nextItem}
+            aligned horizontally all ${nextItem} ${GEXTRAS_ALIGN_ERROR_RATE}
             left-of ${nextItem} ${margin}
 
 
@@ -194,7 +196,7 @@
 @rule %{objectPattern} are aligned vertically above each other with %{margin} margin
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
-            aligned vertically all ${nextItem}
+            aligned vertically all ${nextItem} ${GEXTRAS_ALIGN_ERROR_RATE}
             above ${nextItem} ${margin}
 
 
