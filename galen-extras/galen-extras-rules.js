@@ -204,3 +204,21 @@ rule("%{objectPattern} sides are horizontally inside %{containerObject} with %{m
         throw new Error("Couldn't find any items matching " + parameters.objectPattern);
     }
 });
+
+
+
+rule("text of all %{objectPattern} should be [%{textJson}]", function (objectName, parameters) {
+    var items = findAll(parameters.objectPattern);
+    if (items.length > 0) {
+
+        var expectedTexts = JSON.parse("[" + parameters.textJson + "]");
+        
+        for (var i = 0; i < items.length; i++) {
+            this.addObjectSpecs(items[i].name, [ "text is " + JSON.stringify(expectedTexts[i])]);
+        }
+
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectPattern);
+    }
+});
+

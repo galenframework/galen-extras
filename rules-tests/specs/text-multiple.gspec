@@ -1,0 +1,16 @@
+@import init.gspec
+
+@script text-multiple.mock.js
+
+@objects
+    label-1     #label1
+    label-2     #label2
+    label-3     #label3
+
+@groups
+    labels      label-#
+
+= Main =
+    |text of all &labels should be ["text 1", "text 2", "text 3 with \"double quotes\""]
+
+
