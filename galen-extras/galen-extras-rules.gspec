@@ -65,7 +65,7 @@
 #   | menu.item-* should be squared with ~ 100px size
 #
 @rule %{objectPattern} should be squared with %{size} size
-    ${objectPattern}
+    ${objectPattern}:
         width ${size}
         height ${size}
 

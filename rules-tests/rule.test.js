@@ -21,6 +21,10 @@ testSpec("squared.gspec", [], function (spec) {
     })
     .hasObjectWithSpecGroups("icon-3", {
         "almost squared": ["width 90 to 110% of icon-3/height"]
+    })
+    .hasRuleSection("icon-* should be squared with 23 to 30 px size", {
+        "icon-1": ["width 23 to 30 px", "height 23 to 30 px"],
+        "icon-2": ["width 23 to 30 px", "height 23 to 30 px"]
     });
 });
 
